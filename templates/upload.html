@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>rkit Upload</title>
+    <link rel="stylesheet" href="/static/css/upload.css">
+</head>
+<body>
+<div class="layout">
+    <aside class="sidebar">
+        <img src="/static/img/rkit.svg" alt="rkit logo" class="logo">
+        <ul class="steps">
+            <li class="active">Upload</li>
+            <li>Zielformat</li>
+            <li>Download</li>
+        </ul>
+        <button class="restart">Neustart</button>
+        <div class="nav-buttons">
+            <button class="back">&larr; Zurück</button>
+            <button class="next">Weiter &rarr;</button>
+        </div>
+    </aside>
+    <main class="upload-area">
+        <form action="/convert" method="post" enctype="multipart/form-data" class="drop-zone">
+            <img src="/static/img/file_large.svg" class="upload-icon" alt="Upload Icon">
+            <p class="instructions">Laden Sie Ihre Datei einfach per Drag & Drop oder durch Klick auf den Button hoch.</p>
+            <label class="upload-btn">
+                Datei auswählen
+                <input type="file" name="file" hidden required>
+            </label>
+        </form>
+    </main>
+</div>
+</body>
+</html>
