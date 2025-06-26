@@ -1,35 +1,81 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>rkit Upload</title>
-    <link rel="stylesheet" href="/static/css/upload.css">
+  <meta charset="UTF-8">
+  <title>rkit Upload</title>
+  <link rel="stylesheet" href="/static/css/upload.css">
 </head>
 <body>
-<div class="layout">
+  <div class="layout">
     <aside class="sidebar">
-        <img src="/static/img/rkit.svg" alt="rkit logo" class="logo">
-        <ul class="steps">
-            <li class="active">Upload</li>
-            <li>Zielformat</li>
-            <li>Download</li>
-        </ul>
-        <button class="restart">Neustart</button>
-        <div class="nav-buttons">
-            <button class="back">&larr; Zurück</button>
-            <button class="next">Weiter &rarr;</button>
-        </div>
+      <img src="/static/img/rkit.svg" alt="rkit logo" class="logo">
+      <ul class="steps">
+        <li class="active">Upload</li>
+        <li>Zielformat</li>
+        <li>Download</li>
+      </ul>
+      <button class="restart" onclick="location.href='/upload'">Neustart</button>
+      <div class="nav-buttons">
+        <button class="back">&larr; Zurück</button>
+        <button class="next">Weiter &rarr;</button>
+      </div>
     </aside>
+
     <main class="upload-area">
-        <form action="/convert" method="post" enctype="multipart/form-data" class="drop-zone">
-            <img src="/static/img/file_large.svg" class="upload-icon" alt="Upload Icon">
-            <p class="instructions">Laden Sie Ihre Datei einfach per Drag & Drop oder durch Klick auf den Button hoch.</p>
-            <label class="upload-btn">
-                Datei auswählen
-                <input type="file" name="file" hidden required>
-            </label>
-        </form>
+      <form id="uploadForm" action="/convert" method="post" enctype="multipart/form-data" class="drop-zone">
+        <img id="uploadIcon" src="/static/img/file_large.svg" alt="Upload Icon" class="upload-icon">
+
+        <p class="instructions" id="instructions">
+          Laden Sie Ihre Datei einfach per Drag & Drop oder durch Klick auf den Button hoch.
+        </p>
+
+        <label class="upload-btn">
+          Datei auswählen
+          <input type="file" id="fileInput" name="file" required hidden>
+        </label>
+
+        <p id="fileName" class="file-name" style="display:none; margin-top: 10px; color: #333;"></p>
+
+        <!-- Format options -->
+        <div id="format-buttons" class="format-options" style="display: none;">
+          <button type="button" class="format-btn pdf">PDF</button>
+          <button type="button" class="format-btn word">Word</button>
+          <button type="button" class="format-btn retupe">Retupe</button>
+          <button type="button" class="format-btn html">HTML</button>
+          <button type="button" class="format-btn ppt">PowerPoint</button>
+          <button type="button" class="format-btn txt">TXT</button>
+          <button type="button" class="format-btn xml">XML</button>
+        </div>
+
+        <button type="submit" id="convertBtn" class="convert-btn" style="display: none;">Convert</button>
+      </form>
     </main>
-</div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const convertBtn = document.getElementById('convertBtn');
+    const fileNameDisplay = document.getElementById('fileName');
+    const uploadIcon = document.getElementById('uploadIcon');
+    const instructions = document.getElementById('instructions');
+    const uploadForm = document.getElementById('uploadForm');
+    const formatButtons = document.getElementById('format-buttons');
+
+    fileInput.addEventListener('change', function () {
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        fileNameDisplay.textContent = file.name;
+        fileNameDisplay.style.display = 'block';
+        convertBtn.style.display = 'inline-block';
+        formatButtons.style.display = 'flex';
+      }
+    });
+
+    uploadForm.addEventListener('submit', function () {
+      uploadIcon.src = "/static/img/loading.svg";
+      instructions.textContent = "Wird hochgeladen...";
+      convertBtn.disabled = true;
+    });
+  </script>
 </body>
 </html>
