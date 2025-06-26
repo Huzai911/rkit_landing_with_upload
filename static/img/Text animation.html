@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dateiformat-Animation</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    .text-rotation {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4ch;
+      font-size: 2rem;
+      font-weight: 400;
+    }
+
+    .rotating-words {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Platzhalter zur Fixierung der Breite */
+    .rotating-words::after {
+      content: "flexibel";
+      visibility: hidden;
+      display: block;
+      height: 0;
+    }
+
+    .word {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(0.5em); /* Startposition: von unten */
+      animation: rotateWord 9s ease-in-out infinite;
+    }
+
+    .word:nth-child(1) { animation-delay: 0s; }
+    .word:nth-child(2) { animation-delay: 3s; }
+    .word:nth-child(3) { animation-delay: 6s; }
+
+    @keyframes rotateWord {
+      0%   { opacity: 0; transform: translateY(0.5em); }
+      10%  { opacity: 1; transform: translateY(0); }
+      30%  { opacity: 1; transform: translateY(0); }
+      33%  { opacity: 0; transform: translateY(-0.5em); }
+      100% { opacity: 0; transform: translateY(-0.5em); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-rotation">
+    <span>Dateiformate</span>
+    <span class="rotating-words">
+      <span class="word">einfach</span>
+      <span class="word">schnell</span>
+      <span class="word">flexibel</span>
+    </span>
+    <span>wechseln</span>
+  </div>
+
+</body>
+</html>
