@@ -1,24 +1,174 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>rkit</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>rkit</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .logo-container {
+      width: 335px;
+      height: 154px;
+      margin: 0 auto 20px;
+    }
+
+    .logo-letters path {
+      opacity: 0;
+      animation: appear-from-bottom 0.8s ease-out forwards;
+    }
+
+    .logo-letters path:nth-child(1) { animation-delay: 0s; }
+    .logo-letters path:nth-child(2) { animation-delay: 0.06s; }
+    .logo-letters path:nth-child(3) { animation-delay: 0.12s; }
+    .logo-letters path:nth-child(4) { animation-delay: 0.18s; }
+    .logo-letters path:nth-child(5) { animation-delay: 0.24s; }
+    .logo-letters path:nth-child(6) { animation-delay: 0.30s; }
+
+    @keyframes appear-from-bottom {
+      0%   { transform: translateY(110%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .text-rotation {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 20px 0;
+    }
+
+    .rotating-words {
+      position: relative;
+      display: inline-block;
+    }
+
+    .rotating-words::after {
+      content: "flexibel";
+      visibility: hidden;
+      display: block;
+      height: 0;
+    }
+
+    .word {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(0.5em);
+      animation: rotateWord 9s ease-in-out infinite;
+    }
+
+    .word:nth-child(1) { animation-delay: 0s; }
+    .word:nth-child(2) { animation-delay: 3s; }
+    .word:nth-child(3) { animation-delay: 6s; }
+
+    @keyframes rotateWord {
+      0%   { opacity: 0; transform: translateY(0.5em); }
+      10%  { opacity: 1; transform: translateY(0); }
+      30%  { opacity: 1; transform: translateY(0); }
+      33%  { opacity: 0; transform: translateY(-0.5em); }
+      100% { opacity: 0; transform: translateY(-0.5em); }
+    }
+
+    .formats {
+      margin: 20px 0;
+    }
+
+    .format {
+      display: inline-block;
+      margin: 6px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 14px;
+      color: white;
+    }
+
+    .red { background: #d00000; }
+    .blue { background: #2a52be; }
+    .green { background: #108d00; }
+    .purple { background: #7c00b3; }
+    .pink { background: #cc0066; }
+    .gray { background: #444; }
+    .yellow { background: #d8a100; }
+
+    .start-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #ff9900;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .start-button:hover {
+      background: #e68a00;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="/static/img/rkit.svg" alt="rkit logo" class="logo" />
-        <p class="tagline">Dateiformate einfach transformieren</p>
-        <div class="formats">
-            <span class="format red">PDF</span>
-            <span class="format blue">Word</span>
-            <span class="format green">Retupe</span>
-            <span class="format purple">HTML</span>
-            <span class="format pink">PowerPoint</span>
-            <span class="format gray">TXT</span>
-            <span class="format yellow">XML</span>
-        </div>
-        <a href="/upload" class="start-button">Jetzt starten <span>&#10140;</span></a>
+  <div class="container">
+    <!-- Animated SVG Logo -->
+    <div class="logo-container">
+      <svg id="logo-animiert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335.4 154.4" width="100%">
+        <defs>
+          <linearGradient id="gradient1" x1="73.3" y1="211.86" x2="243.12" y2="9.47" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#f28b1d"/>
+            <stop offset="1" stop-color="#f8ac13"/>
+          </linearGradient>
+        </defs>
+        <g class="logo-letters" fill="url(#gradient1)">
+          <path d="M62,51v18.4c0,2.53-1.27,3.6-3.8,3.2-3.6-.53-7.73-.8-12.4-.8-6,0-11.07.87-15.2,2.6v74c0,2.4-1.13,3.6-3.4,3.6H3.6c-2.4,0-3.6-1.2-3.6-3.6V57.6c0-1.87.87-3.27,2.6-4.2,11.2-5.47,23.47-8.2,36.8-8.2,4.93,0,11.4.67,19.4,2,2.13.4,3.2,1.67,3.2,3.8Z"/>
+<path d="M131.8,91.8l33.8-39.6c.93-1.2,1.23-2.2.9-3-.34-.8-1.23-1.2-2.7-1.2h-27.8c-1.87,0-3.27.73-4.2,2.2l-25.4,33V12.6c0-2.4-1.2-3.6-3.6-3.6h-23.2c-2.4,0-3.6,1.2-3.6,3.6v135.8c0,2.4,1.2,3.6,3.6,3.6h23.2c2.4,0,3.6-1.2,3.6-3.6v-28.8l5.6-6,23.4,36c.67,1.6,2.07,2.4,4.2,2.4h28.2c1.47,0,2.4-.4,2.8-1.2s.2-1.8-.6-3l-38.2-56Z"/>
+<path d="M196.4,0c-4.93,0-9,1.57-12.2,4.7-3.2,3.13-4.8,7.17-4.8,12.1s1.6,8.8,4.8,12c3.2,3.2,7.27,4.8,12.2,4.8s8.97-1.6,12.1-4.8c3.13-3.2,4.7-7.2,4.7-12s-1.57-8.97-4.7-12.1c-3.13-3.13-7.17-4.7-12.1-4.7Z"/>
+<path d="M208.2,48h-23.6c-2.4,0-3.6,1.13-3.6,3.4v97c0,2.4,1.2,3.6,3.6,3.6h23.6c2.27,0,3.4-1.2,3.4-3.6V51.4c0-2.27-1.13-3.4-3.4-3.4Z"/>
+<path d="M283.6,126.8c-2.93.27-5.07.4-6.4.4-8.93,0-13.4-4.93-13.4-14.8v-36.2h17.8c2.4,0,3.6-1.13,3.6-3.4v-19.2c0-2.27-1.2-3.4-3.6-3.4h-18l-2.4-24c-.13-2.13-1.33-3.2-3.6-3.2h-20.8c-2.4,0-3.6,1.13-3.6,3.4v89.8c0,12.53,3.46,22.03,10.4,28.5,6.93,6.47,16.4,9.7,28.4,9.7,4.67,0,8.87-.33,12.6-1,1.87-.4,2.8-1.73,2.8-4v-19.6c0-2.4-1.27-3.4-3.8-3Z"/>
+<path d="M330.4,123.7c-3.33-3.27-7.67-4.9-13-4.9s-9.63,1.63-12.9,4.9-4.9,7.5-4.9,12.7,1.67,9.07,5,12.4c3.33,3.33,7.6,5,12.8,5s9.5-1.67,12.9-5c3.4-3.33,5.1-7.47,5.1-12.4,0-5.2-1.67-9.43-5-12.7Z"/>
+        </g>
+      </svg>
     </div>
+
+    <!-- Rotating Tagline -->
+    <div class="text-rotation">
+      <span>Dateiformate</span>
+      <span class="rotating-words">
+        <span class="word">einfach</span>
+        <span class="word">schnell</span>
+        <span class="word">flexibel</span>
+      </span>
+      <span>wechseln</span>
+    </div>
+
+    <!-- Format Pills -->
+    <div class="formats">
+      <span class="format red">PDF</span>
+      <span class="format blue">Word</span>
+      <span class="format green">Retupe</span>
+      <span class="format purple">HTML</span>
+      <span class="format pink">PowerPoint</span>
+      <span class="format gray">TXT</span>
+      <span class="format yellow">XML</span>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="/upload" class="start-button">Jetzt starten <span>&#10140;</span></a>
+  </div>
 </body>
 </html>
