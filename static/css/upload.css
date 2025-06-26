@@ -1,115 +1,194 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f8f9fc;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fafc;
 }
 
 .layout {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
+/* Sidebar */
 .sidebar {
-    width: 220px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 240px;
+  background: #fff;
+  padding: 30px 20px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
-    height: 60px;
-    margin-bottom: 40px;
+  height: 50px;
+  margin-bottom: 50px;
 }
 
 .steps {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  width: 100%;
+  text-align: center;
 }
 
 .steps li {
-    padding: 10px 0;
-    color: #bbb;
-    text-align: center;
-    font-weight: bold;
+  color: #bbb;
+  font-weight: 600;
+  padding: 10px 0;
 }
 
 .steps li.active {
-    color: #ff9900;
+  color: #ff9900;
 }
 
 .restart {
-    margin: 20px 0;
-    background: none;
-    border: 1px solid #ccc;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
+  margin: 10px 0 30px;
+  background: none;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .nav-buttons {
-    margin-top: auto;
-    display: flex;
-    gap: 10px;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
 
 .nav-buttons button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
 }
 
 .nav-buttons .back {
-    background: #eee;
-    color: #666;
+  background: #eee;
+  color: #333;
 }
 
 .nav-buttons .next {
-    background: #ff9900;
-    color: white;
+  background: #ff9900;
+  color: white;
 }
 
+/* Upload Area */
 .upload-area {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 
 .drop-zone {
-    border: 2px dashed #ccc;
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    background: white;
-    width: 400px;
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  background: white;
+  width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.03);
+  transition: all 0.3s ease-in-out;
 }
 
 .upload-icon {
-    height: 80px;
-    margin-bottom: 20px;
+  height: 80px;
+  margin-bottom: 20px;
 }
 
 .instructions {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
 }
 
 .upload-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #f5f5f5;
-    border-radius: 20px;
-    cursor: pointer;
-    color: #333;
-    font-weight: bold;
-    border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px 24px;
+  background: #f2f2f2;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  transition: background 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: #e6e6e6;
+}
+
+/* Filename display */
+.file-name {
+  font-size: 14px;
+  color: #333;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* Convert Button */
+.convert-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #ff9900;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.convert-btn:hover {
+  background: #e88a00;
+}
+
+/* Format Selection Buttons */
+.format-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.format-btn {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.format-btn.pdf { background: #ffe5e5; color: #d00000; }
+.format-btn.word { background: #e6eeff; color: #2a52be; }
+.format-btn.retupe { background: #d9ffe5; color: #119822; }
+.format-btn.html { background: #f1e1ff; color: #7c0fc2; }
+.format-btn.ppt { background: #ffe1f1; color: #bb0059; }
+.format-btn.txt { background: #efefef; color: #333; }
+.format-btn.xml { background: #fff4cc; color: #d89700; }
+
+.format-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+/* Upload Zone Hover Effect */
+.drop-zone:hover {
+  border-color: #ff9900;
+  background-color: #fffdf8;
+  box-shadow: 0 0 12px rgba(255, 153, 0, 0.2);
+  transition: all 0.3s ease;
 }
